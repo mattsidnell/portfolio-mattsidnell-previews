@@ -1,0 +1,24 @@
+{
+  "slug": "mattsidnell-portfolio-preview",
+  "name": "Matt Sidnell Portfolio Preview",
+  "version": "2026.10.29.392346e",
+  "manifest": {
+    "containers": [
+      {
+        "name": "web",
+        "image": "ghcr.io/mattsidnell/portfolio-mattsidnell-previews@sha256:534cb41277f13baa218f0be0f2c9ac4385d8e398a7f4b490d9d8efad686564a5",
+        "healthcheck": [
+          "CMD",
+          "wget",
+          "-q",
+          "-O",
+          "/dev/null",
+          "http://127.0.0.1/_health"
+        ],
+        "expose": [
+          80
+        ]
+      }
+    ]
+  }
+}
