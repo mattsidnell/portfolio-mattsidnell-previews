@@ -55,3 +55,16 @@ All three are generated from the same canonical portfolio content (`docs/cyan/`)
 **Portrait correctness:** An earlier image-generation concept displayed a fictional face in a hoodie. The real cropped photo still showed a suit. Since no genuine casual photo of Matt has been provided, these three working sites use an explicitly labelled hoodie illustration in the hero and MS initials in the about block. Neither is represented as an actual portrait. Replace these elements with a user-approved genuine casual photo once supplied. Do not use synthetic faces or invented project screenshots as factual portfolio proof.
 
 `node tests/verify-concept03.js` tests all three: desktop/mobile dimensions, image loads, navigation, filter operation and JS errors. This is preview-only, does not change mattsidnell.co.uk, and carries noindex metadata.
+
+## Concept 03 correction — reference fidelity
+
+The user clarified Concept 03 by supplying the dark navy/cyan visual showing a two-column hero, a casual profile image with code-editor overlays, technical flow boxes, an expertise strip, and four side-by-side project screenshot cards. The previous `docs/concept03-*` pages incorrectly replicated the separate white `docs/cyan` design. **The corrected variations are now built from `tests/concept03-reference.html`, not `docs/cyan/index.html`.**
+
+- `docs/concept03-dark/`: closest to the selected dark original, bright cyan highlights, subtle yellow marks.
+- `docs/concept03-cyan/`: faithful same layout with clean bright cyan and navy.
+- `docs/concept03-yellow/`: faithful same layout with warmer white background and yellow highlights.
+- `docs/concept03/`: comparison gallery rendered from the existing reusable DigiPixel selector.
+- Generator: `python3 tests/build-concept03.py`, then selector renderer. Visual CSS and JS: `docs/concept03/assets/site.css` and `site.js`.
+- The top four project images use **real captured website screenshots**: Sidnell (live), Grinders (live), Lyneham Flying Club (local), Pixlwrk (local). Further actual public sites are under More selected work. Do not imply the local builds are public.
+- The hero intentionally uses a **clearly labelled illustration/composite** of Matt's real facial portrait with a CSS hoodie, not a claim that he has been photographed wearing a hoodie. To replace with an authentic hoodie-and-jeans photo, request a genuine casual source photograph and preserve the verified layout.
+- Verify `node tests/verify-concept03.js` on desktop and mobile. All comparisons noindex and staging/review only. Do not change mattsidnell.co.uk without separately requested production deployment.

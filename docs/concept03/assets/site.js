@@ -1,0 +1,5 @@
+const menu=document.querySelector('.menu');const nav=document.querySelector('.nav');
+menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close ×':'Menu ☰'});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰'}));
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const val=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));document.querySelectorAll('[data-kind]').forEach(article=>article.hidden=val!=='all'&&!article.dataset.kind.split(' ').includes(val));}));
+const current=document.body.dataset.theme;const targets={dark:'../concept03-dark/',cyan:'../concept03-cyan/',yellow:'../concept03-yellow/'};document.querySelectorAll('.colour-bar nav a').forEach(link=>{if(link.getAttribute('href')===targets[current])link.setAttribute('aria-current','page')});

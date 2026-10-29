@@ -1,30 +1,30 @@
 {
-  "project": "Matt Sidnell \u2014 Concept 03 Colour Studies",
-  "category": "Personal portfolio design review",
-  "title": "Concept 03. Three colour directions.",
-  "summary": "Compare the same real developer portfolio in three colourways: a restrained cyan-led version, a livelier yellow-accented version and a dark technical version. Every preview includes actual project screenshots and real links where available.",
-  "notice": "Design previews only. The person is represented by a small, genuine headshot cropped from an existing formal photograph. A casual hoodie/jeans portrait has not been fabricated: replace the headshot with a newly supplied genuine photo. Project previews are captured from live websites or labelled local development builds.",
+  "project": "Matt Sidnell \u2014 Concept 03",
+  "category": "Personal developer portfolio \u2014 design comparison",
+  "title": "The real Concept 03. Three colour options.",
+  "summary": "This is the layout you selected: bold headline, dark technical code panel, casual portrait treatment and a row of four real website screenshots. Compare exactly the same structure in three colours, starting with the original dark navy/cyan direction.",
+  "notice": "Design review only. The hero shows Matt's genuine face in an illustrated casual hoodie composite, not a real hoodie photograph. The website screenshots are real. The Lyneham Flying Club and Pixlwrk examples come from local builds, clearly marked. No changes have been made to mattsidnell.co.uk.",
   "concepts": [
     {
-      "name": "01 / Cyan & Navy",
-      "tag": "Clean & confident",
-      "description": "A white, navy and cyan direction with just a hint of yellow. The most universally professional choice.",
+      "name": "Midnight Cyan",
+      "tag": "Original dark concept",
+      "description": "Dark navy, electric cyan and tiny yellow flourishes. Closest to the Concept 03 image you selected.",
+      "image": "../assets/previews/concept03-dark.jpg",
+      "url": "../concept03-dark/"
+    },
+    {
+      "name": "Clean Cyan",
+      "tag": "Bright, technical and clear",
+      "description": "The identical layout on a lighter white, navy and cyan palette.",
       "image": "../assets/previews/concept03-cyan.jpg",
       "url": "../concept03-cyan/"
     },
     {
-      "name": "02 / Cyan & Electric Yellow",
-      "tag": "Creative & memorable",
-      "description": "The same serious developer portfolio with more warmth, creative energy and distinctive yellow details.",
+      "name": "Yellow Accent",
+      "tag": "Confident with warmth",
+      "description": "The same layout with cyan plus more noticeable yellow details for creative energy.",
       "image": "../assets/previews/concept03-yellow.jpg",
       "url": "../concept03-yellow/"
-    },
-    {
-      "name": "03 / Midnight Cyan",
-      "tag": "Technical & bold",
-      "description": "A dark navy systems-first aesthetic, bright cyan UI, technical credibility and a restrained yellow spark.",
-      "image": "../assets/previews/concept03-dark.jpg",
-      "url": "../concept03-dark/"
     }
   ]
 }
