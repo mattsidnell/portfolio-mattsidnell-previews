@@ -125,3 +125,13 @@ The user has explicitly selected and uploaded TWO existing photos to use, with *
 - Visual QA: `node tests/verify-approved-photos.cjs` checked 1440px desktop and 390px mobile, images loaded, correct email links, no horizontal overflow, and no page JS errors.
 
 The original user-supplied images are available in the conversation and private OneDrive transport copies; only sized web assets (not the large source originals) are checked into the publicly accessible portfolio preview repository.
+
+## Electric cyan visual polish, 29 October 2026
+
+- **Chosen design** is the original bold `I MAKE WEBSITES & MORE` concept in electric cyan, served at `/concept03/` and `/concept03-cyan/`.
+- The former yellow/pink services panel (`Good ideas. Solid code. No drama.`) is now a cyan gradient with a contrasting navy capabilities panel.
+- The oversized decorative asterisk has been replaced with a low-opacity, accessible decorative SVG code/browser icon.
+- Unicode arrow and dingbat symbols are replaced by self-contained SVG icons for buttons, project links, ticker separators, responsive menu controls and services. Icons inherit the colour theme, use accessible labels on actionable links and `aria-hidden` on decorative SVGs.
+- The nine genuine project screenshots and the user-approved seated portrait remain unchanged. Contact email remains `me@mattsidnell.co.uk`.
+- **Architecture:** This is currently a static HTML/CSS/JavaScript portfolio preview served by Nginx/HTTP static hosting, **not** a custom WordPress theme. The planned production conversion to a custom WordPress theme and companion portfolio plugin is not implemented and should not be represented as complete.
+- Staging hostname `mattsidnell.preview.digipixel.uk` currently DNS-resolves to staging host `stg-01` at 104.238.185.163, but HTTPS fails during TLS negotiation because its Caddy/ingress route is not configured. The static files are deployed to the server and work through the user-owned service on port 8765. Public review remains accessible on GitHub Pages pending authorised Caddy/Ops configuration.

@@ -155,6 +155,89 @@ html=html.replace('</style>',base_css+photo_css+'</style>',1)
 html=html.replace('Creative developer / Design concept 02','Personal developer portfolio / Concept 03')
 html=html.replace('matt@sidnell.uk','me@mattsidnell.co.uk')
 # The user's screenshot is the selected hero. DO NOT alter that hero's typography or layout.
+# Client-approved polish: use restrained cyan for the full services section, replace
+# the decorative giant asterisk and any unicode symbol "icons" with vector artwork.
+# Keep the typography, section copy, portfolio screenshots and approved photo.
+vector = {
+  "right": '<svg class="ui-icon ui-icon-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg>',
+  "down": '<svg class="ui-icon ui-icon-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-7-7 7 7 7-7"/></svg>',
+  "external": '<svg class="ui-icon ui-icon-external" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>',
+  "menu": '<svg class="ui-icon ui-icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+  "close": '<svg class="ui-icon ui-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>',
+  "code": '<svg class="ui-icon ui-icon-code" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="22" width="94" height="75" rx="9"/><path d="M13 42h94M36 60l-12 12 12 12M84 60l12 12-12 12M70 55 50 89"/></svg>',
+  "browser": '<svg class="ui-icon ui-icon-browser" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M6.5 6.5h.1M9.5 6.5h.1"/></svg>',
+  "layers": '<svg class="ui-icon ui-icon-layers" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>',
+  "terminal": '<svg class="ui-icon ui-icon-terminal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m6 9 4 3-4 3m7 0h5"/></svg>',
+  "workflow": '<svg class="ui-icon ui-icon-workflow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="7" height="7" rx="1"/><rect x="15" y="14" width="7" height="7" rx="1"/><path d="M9 6h5a4 4 0 0 1 4 4v4M6 10v3a4 4 0 0 0 4 4h5"/></svg>',
+  "chip": '<svg class="ui-icon ui-icon-chip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>'
+}
+# Replace the big decorative asterisk with a tasteful geometric code / browser icon.
+html=html.replace('<span class="scribble" aria-hidden="true">*</span>',
+                  '<span class="scribble" aria-hidden="true">'+vector["code"]+'</span>')
+# The technology band originally used a dingbat as a CSS-generated emoji.
+html=html.replace("content:'✳';font-size:18px;margin-left:30px", "content:'';display:none")
+# Use actual inline vector icons between technology tags rather than the old glyph.
+ticker_old='<div class="ticker-inner"><span>WordPress</span><span>Laravel</span><span>Headless</span><span>Custom systems</span><span>API integrations</span></div>'
+ticker_labels=['WordPress','Laravel','Headless','Custom systems','API integrations']
+ticker_new='<div class="ticker-inner">' + ''.join('<span>'+label+'</span>'+ (vector["chip"] if i<len(ticker_labels)-1 else '') for i,label in enumerate(ticker_labels))+'</div>'
+assert ticker_old in html
+html=html.replace(ticker_old,ticker_new)
+# Numbered service headings receive explicit Lucide-style SVGs; numbers stay
+# accessible and readable rather than disappearing.
+for number,iconname in [('01','browser'),('02','layers'),('03','terminal'),('04','workflow')]:
+    old='<div class="skill"><em>'+number+'</em><div>'
+    new='<div class="skill"><span class="skill-symbol">'+vector[iconname]+'</span><div>'
+    assert old in html
+    html=html.replace(old,new)
+# All remaining visual direction marks and mobile menu controls are SVGs.
+html=html.replace('↗',vector["external"]).replace('↓',vector["down"]).replace('→',vector["right"])
+html=html.replace('class="toggle" type="button" aria-controls="mainnav" aria-expanded="false">Menu +</button>',
+    'class="toggle" type="button" aria-controls="mainnav" aria-expanded="false">Menu '+vector["menu"]+'</button>')
+html=html.replace("b.textContent=o?'Close ×':'Menu +'", """b.innerHTML=o?('Close '+document.querySelector('#icon-close-template').innerHTML):('Menu '+document.querySelector('#icon-menu-template').innerHTML)""")
+html=html.replace('</body>',
+    '<template id="icon-menu-template">'+vector["menu"]+'</template><template id="icon-close-template">'+vector["close"]+'</template></body>')
+polish_css=r"""
+/* Selected electric-cyan brand: no large yellow/pink panels. */
+body[data-colour=cyan]{--yellow:#3bd6ee;--cream:#f1fbff;--pink:#5bdaef;--black:#0c2535}
+body[data-colour=cyan] .split-left{background:linear-gradient(130deg,#4bddf1 0%,#27c6df 100%);color:#0b2839}
+body[data-colour=cyan] .split-right{background:#0b2636;color:#eefcff}
+body[data-colour=cyan] .split-left .scribble{color:#0c748d;opacity:.22}
+body[data-colour=cyan] .hero h1 span[style],body[data-colour=cyan] .headline-period{color:#0b2636!important}
+body[data-colour=cyan] .big-disc{background:#80eafb}
+body[data-colour=cyan] .circle-btn{background:#0b2636;color:#b5f5ff}
+body[data-colour=cyan] .desc b{background:#0b2636;color:#baf7ff}
+body[data-colour=cyan] .split-right .skill-symbol{color:#47d8ed}
+body[data-colour=cyan] .top-right .hire{background:#082c3d;border-color:#082c3d;color:#c5fbff}
+body[data-colour=cyan] .hero{background:#43d6e9}
+body[data-colour=cyan] .about-photo{border-color:#0a3446}
+body[data-colour=cyan] .about{background:#f4fcfe}
+body[data-colour=cyan] .visit-label{background:#91e9f8}
+body[data-colour=cyan] .work-card-footer a:hover{background:#5adbef}
+body[data-colour=cyan] .toggle{background:transparent;color:#0b2636}
+.ui-icon{display:inline-block;vertical-align:middle;flex:0 0 auto}
+.top-right .hire .ui-icon{width:17px;height:17px}
+.project-screenshot .visit-label .ui-icon{width:13px;height:13px}
+.work-card-footer a .ui-icon{width:22px;height:22px}
+.circle-btn .ui-icon{width:34px;height:34px}
+.big-arrow .ui-icon{width:90px;height:90px}
+.ticker-inner{align-items:center;justify-content:space-between}
+.ticker-inner>.ui-icon{opacity:.8;flex:0 0 auto}
+.split-left .scribble{font-size:initial;position:absolute;right:-10px;bottom:-58px;transform:rotate(-14deg);opacity:.22}
+.split-left .scribble .ui-icon{width:300px;height:300px}
+.skill-symbol{color:#a5e8f1;grid-row:span 2;padding-top:1px}
+.skill-symbol .ui-icon{width:26px;height:26px}
+.skill{grid-template-columns:40px 1fr}
+.toggle{display:none;align-items:center;gap:9px}
+@media(max-width:720px){
+.toggle{display:inline-flex}
+.big-arrow .ui-icon{width:62px;height:62px}
+.split-left .scribble{right:-62px;bottom:-55px}
+.split-left .scribble .ui-icon{width:220px;height:220px}
+.ticker-inner{gap:25px}
+}
+"""
+html=html.replace('</style>',polish_css+'</style>',1)
+# Copy is unchanged: this is a presentation pass, not another layout concept.
 base=html
 for name,label in [('yellow','Original Yellow'),('cyan','Electric Cyan'),('dark','Midnight Navy')]:
     page=base.replace('<body>','<body data-colour="'+name+'">')
