@@ -1,0 +1,20 @@
+name: mattsidnell-portfolio-preview
+services:
+  site:
+    image: nginx:stable-alpine
+    container_name: mattsidnell-portfolio-preview
+    restart: unless-stopped
+    volumes:
+      - ./docs:/usr/share/nginx/html:ro
+      - ./ops/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "127.0.0.1:8797:80"
+    networks:
+      - dev
+    labels:
+      caddy: "mattsidnell-portfolio.digipixel.test"
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.tls: "internal"
+networks:
+  dev:
+    external: true

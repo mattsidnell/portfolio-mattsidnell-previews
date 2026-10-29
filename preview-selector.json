@@ -1,0 +1,30 @@
+{
+  "project": "Matt Sidnell",
+  "category": "Personal portfolio design review",
+  "title": "Three directions. One independent developer.",
+  "summary": "Compare three completely different ways to position Matt Sidnell for freelance web development, agency overflow and contract opportunities. Each concept is responsive and has working navigation and contact links.",
+  "notice": "Design review only. All concepts are non-production prototypes. Project descriptions are based on existing work; illustrative mockups are not project screenshots. No contact form submissions are collected.",
+  "concepts": [
+    {
+      "name": "The Independent",
+      "tag": "Refined · Personal · Trust led",
+      "description": "Warm, editorial and reassuring. Makes the developer approachable while giving agencies confidence in delivery and communication.",
+      "image": "./assets/previews/independent-desktop.jpg",
+      "url": "./independent/"
+    },
+    {
+      "name": "The Studio",
+      "tag": "Bold · Creative · Distinctive",
+      "description": "A confident creative portfolio with huge type, punchy colours and a fast project-led journey. Designed to stand out to digital agencies.",
+      "image": "./assets/previews/studio-desktop.jpg",
+      "url": "./studio/"
+    },
+    {
+      "name": "The Systems Mind",
+      "tag": "Technical · Product led · Precise",
+      "description": "Dark engineering aesthetic, interactive project filters and architecture-focused positioning for specialist build contracts.",
+      "image": "./assets/previews/systems-desktop.jpg",
+      "url": "./systems/"
+    }
+  ]
+}
