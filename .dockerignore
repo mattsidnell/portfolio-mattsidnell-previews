@@ -1,0 +1,9 @@
+.git
+.github
+screenshots
+tests
+README.md
+compose.local.yml
+preview-selector.json
+ops/staging/README.md
+ops/staging/compose.preview.yml
