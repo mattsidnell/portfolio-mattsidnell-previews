@@ -139,6 +139,7 @@ body[data-colour=dark] .big-disc{background:#edd04c;color:#061923;border-color:#
 '''
 html=html.replace('</style>',base_css+'</style>',1)
 html=html.replace('Creative developer / Design concept 02','Personal developer portfolio / Concept 03')
+html=html.replace('matt@sidnell.uk','me@mattsidnell.co.uk')
 # The user's screenshot is the selected hero. DO NOT alter that hero's typography or layout.
 base=html
 for name,label in [('yellow','Original Yellow'),('cyan','Electric Cyan'),('dark','Midnight Navy')]:
@@ -152,20 +153,20 @@ for name,label in [('yellow','Original Yellow'),('cyan','Electric Cyan'),('dark'
         (docs/'concept03-yellow'/'index.html').write_text(page)
 
 selector={
-  "project":"Matt Sidnell — Original Concept 03",
+  "project":"Matt Sidnell — Concept 03 cyan-led colour comparison",
   "category":"Personal portfolio website design review",
-  "title":"The bold Concept 03 you selected.",
-  "summary":"Exactly the bold typographic design shown in your screenshot: 'I MAKE WEBSITES & MORE', oversized lettering, a circular work CTA and a scrolling technology ticker. Compare the same composition in the original yellow, electric cyan, and dark navy.",
+  "title":"Concept 03. Cyan first, three bold directions.",
+  "summary":"The bold 'I MAKE WEBSITES & MORE' portfolio design you picked, available in three colourways. Cyan is the leading option, with original yellow and dark navy for comparison.",
   "notice":"These are review previews. There is deliberately no portrait: the generated/cutout likenesses were not suitable. The portfolio cards show nine genuine site screenshots, with local-only development work clearly labelled. The production mattsidnell.co.uk website is unchanged.",
   "concepts":[
-    {"name":"01 / Original Yellow","tag":"Your chosen design","description":"The bright yellow and black typography from your actual phone screenshot. Original hero retained.","image":"../assets/previews/concept03-yellow.jpg","url":"../concept03-yellow/"},
-    {"name":"02 / Electric Cyan","tag":"Cyan-led alternative","description":"Same bold original design, with cyan as the dominant colour and restrained yellow touches.","image":"../assets/previews/concept03-cyan.jpg","url":"../concept03-cyan/"},
+    {"name":"01 / Electric Cyan","tag":"Preferred direction","description":"Your original bold typography with electric cyan dominant and controlled yellow accents.","image":"../assets/previews/concept03-cyan.jpg","url":"../concept03-cyan/"},
+    {"name":"02 / Original Yellow","tag":"Original reference","description":"The black-on-yellow treatment from your screenshot; identical layout, exact original headline and navigation.","image":"../assets/previews/concept03-yellow.jpg","url":"../concept03-yellow/"},
     {"name":"03 / Midnight Navy","tag":"Dark alternative","description":"Same giant type and content layout on deep navy, accented with bright cyan and yellow.","image":"../assets/previews/concept03-dark.jpg","url":"../concept03-dark/"}
   ]
 }
 # The primary /concept03/ address must show the screenshot-matched website,
 # never a selector or a different concept. The comparison lives separately.
-(docs/'concept03'/'index.html').write_text((docs/'concept03-yellow'/'index.html').read_text())
+(docs/'concept03'/'index.html').write_text((docs/'concept03-cyan'/'index.html').read_text())
 compare=docs/'concept03-compare'
 compare.mkdir(parents=True,exist_ok=True)
 (compare/'selector.json').write_text(json.dumps(selector,indent=2)+'\n')

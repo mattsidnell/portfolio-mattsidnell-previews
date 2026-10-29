@@ -94,3 +94,17 @@ python3 tests/build-bold-concept03.py
 python3 ~/Sites/digipixel-preview-selector/render.py --config docs/concept03-compare/selector.json --output docs/concept03-compare/index.html
 node tests/verify-bold-concept03.js
 ```
+
+## 29 October 2026 — Cyan-first staging delivery
+
+The selected Concept 03 is the bold `I MAKE WEBSITES & MORE` design, not the unrelated systems-minded design. Three variants share the original layout:
+
+1. `docs/concept03-cyan/` — preferred electric cyan, small yellow accent.
+2. `docs/concept03-yellow/` — original yellow reference.
+3. `docs/concept03-dark/` — midnight navy with cyan highlights.
+
+`docs/concept03/` is now the cyan version and `docs/concept03-compare/` is the shared DigiPixel-branded selector, cyan listed first. All developer contact links in these versions use `me@mattsidnell.co.uk`. Nine real project screenshots, mobile navigation and contact links are verified.
+
+Staging origin files are copied to `stg-01` (104.238.185.163), `/home/mattsidnell/previews/mattsidnell/`, using Mac Bridge SSH as the authorised `mattsidnell` user. A user-owned static HTTP service on port 8765 returns 200 on that server. However public traffic to port 8765 is blocked and `mattsidnell.preview.digipixel.uk` has no Caddy HTTPS route/certificate yet. Do **not** claim the branded staging URL is live until that reverse-proxy route is provisioned in Ops and verified externally. Account does not have permission for the root-owned Docker socket/Caddy route; `sudo -n` requires interactive authentication. The GitHub Pages preview remains the externally accessible review fallback. Public HTTPS routing on the staging domain is the remaining blocker; source and site files are already staged.
+
+Do not deploy over `mattsidnell.co.uk` without a separate production instruction.
