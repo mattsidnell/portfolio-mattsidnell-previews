@@ -35,7 +35,7 @@ Choose a direction, replace illustrative project artwork with verified screensho
 - New responsive site: `docs/cyan/`, preview path `/cyan/` and linked first in the shared DigiPixel selector.
 - Clean white background with navy and cyan accent; project-first portfolio for freelance web developer and agency contract applications.
 - **Genuine small portrait:** `docs/cyan/assets/matt-headshot.png` is a cropped version of the existing publicly used Matt Sidnell portrait from the Sidnell website. It remains a formal source photo. Replace it with a genuine casual portrait when provided. Do not use an AI generated lookalike as a real picture of Matt.
-- **Real screenshots:** collected using `tests/capture-projects.js` from live sites, plus two clearly marked local development sites in `tests/capture-local-projects.js`. Do not fabricate project website screenshots, testimonials, affiliations or performance metrics.
+- **Real screenshots:** collected using `tests/capture-projects.js` from live sites, plus two project screenshots previously captured from local development environments in `tests/capture-local-projects.js` (those projects now have published sites). Do not fabricate project website screenshots, testimonials, affiliations or performance metrics.
 - Live examples verified at capture: Grinders Golf, Sidnell, DigiPixel, Professional Structures, Web Designer Direct, Sunnyside Accountancy and LPS Garden Buildings.
 - Local examples captured from `lfc-v2.dev.digipixel.test` and `pixlwrk.preview.dev.digipixel.test`; these do not have working public live links at capture, therefore show no production links.
 - Contact email for developer portfolio: `me@mattsidnell.co.uk`, phone `07723 994463`. These are separate from regulated mortgage services.
@@ -65,7 +65,7 @@ The user clarified Concept 03 by supplying the dark navy/cyan visual showing a t
 - `docs/concept03-yellow/`: faithful same layout with warmer white background and yellow highlights.
 - `docs/concept03/`: comparison gallery rendered from the existing reusable DigiPixel selector.
 - Generator: `python3 tests/build-concept03.py`, then selector renderer. Visual CSS and JS: `docs/concept03/assets/site.css` and `site.js`.
-- The top four project images use **real captured website screenshots**: Sidnell (live), Grinders (live), Lyneham Flying Club (local), Pixlwrk (local). Further actual public sites are under More selected work. Do not imply the local builds are public.
+- The top four project images use **real captured website screenshots**: Sidnell (live), Grinders (live), Lyneham Flying Club (published), Pixlwrk (published). Further actual public sites are under More selected work. Lyneham Flying Club and Pixlwrk now have public domains, with live project links on the production portfolio.
 - The hero intentionally uses a **clearly labelled illustration/composite** of Matt's real facial portrait with a CSS hoodie, not a claim that he has been photographed wearing a hoodie. To replace with an authentic hoodie-and-jeans photo, request a genuine casual source photograph and preserve the verified layout.
 - Verify `node tests/verify-concept03.js` on desktop and mobile. All comparisons noindex and staging/review only. Do not change mattsidnell.co.uk without separately requested production deployment.
 
@@ -83,7 +83,7 @@ The user clarified Concept 03 by supplying the dark navy/cyan visual showing a t
 **Implementation**
 - `tests/concept03-bold-reference.html`: canonical unedited original `studio/index.html` captured from the initial design, retaining the precise hero layout.
 - `tests/build-bold-concept03.py`: the only current generator for these Concept 03 pages. Updates project showcases and the About graphic *without modifying the original bold hero layout*.
-- Uses nine real screenshots in `docs/cyan/assets/projects/`; the first four include Grinders, Lyneham Flying Club (clearly local), Sidnell, and Pixlwrk (clearly local).
+- Uses nine real screenshots in `docs/cyan/assets/projects/`; the first four include Grinders, Lyneham Flying Club (published), Sidnell, and Pixlwrk (published).
 - No face compositing, invented hoodie photo, formal suit photograph or other portrait. The screenshot has no hero portrait. The About section uses a bold typographic block, not a picture. This avoids pretending a synthetic casual portrait is a real photo.
 - Verify `node tests/verify-bold-concept03.js`. Tested desktop 1440px, mobile 390px, no overflow, 9 real screenshot images loaded, menu functional, no JS exceptions.
 - Do not alter the production `mattsidnell.co.uk` site until user requests deployment.
@@ -135,3 +135,7 @@ The original user-supplied images are available in the conversation and private 
 - The nine genuine project screenshots and the user-approved seated portrait remain unchanged. Contact email remains `me@mattsidnell.co.uk`.
 - **Architecture:** This is currently a static HTML/CSS/JavaScript portfolio preview served by Nginx/HTTP static hosting, **not** a custom WordPress theme. The planned production conversion to a custom WordPress theme and companion portfolio plugin is not implemented and should not be represented as complete.
 - Staging hostname `mattsidnell.preview.digipixel.uk` currently DNS-resolves to staging host `stg-01` at 104.238.185.163, but HTTPS fails during TLS negotiation because its Caddy/ingress route is not configured. The static files are deployed to the server and work through the user-owned service on port 8765. Public review remains accessible on GitHub Pages pending authorised Caddy/Ops configuration.
+
+## 29 October 2026 live website corrections
+
+The production portfolio now links directly to Lyneham Flying Club at `https://www.lynehamflyingclub.com/`, Pixlwrk at `https://pixlwrk.com/` and DigiPixel at `https://digipixel.uk/`. All three are published projects, not local-only builds. The production site and the Concept 03 source no longer label Lyneham Flying Club or Pixlwrk as local, and the original project screenshot images are retained. During this update the LFC hostname returned HTTP 502 externally, so its current availability is a separate hosting issue rather than a local/development project status.

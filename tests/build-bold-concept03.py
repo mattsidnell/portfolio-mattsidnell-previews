@@ -14,9 +14,9 @@ reference=(root/'tests'/'concept03-bold-reference.html').read_text()
 # The hero, navigation, and ticker are unchanged from the user's exact screenshot.
 projects=[
   ("01","Grinders Golf","CUSTOM GOLF SOCIETY PLATFORM","A custom WordPress golf society website and management system.","grinders.jpg","https://grinders.golf/","WordPress · Club management","live"),
-  ("02","Lyneham Flying Club","MEMBERSHIP & OPERATIONS","A specialist flying club website with membership and operational workflows.","lyneham.jpg",None,"WordPress · Membership","local"),
+  ("02","Lyneham Flying Club","MEMBERSHIP & OPERATIONS","A specialist flying club website with membership and operational workflows.","lyneham.jpg","https://www.lynehamflyingclub.com/","WordPress · Membership","live"),
   ("03","Sidnell","HEADLESS PROFESSIONAL SERVICES","Decoupled professional services website powered by headless WordPress.","sidnell.jpg","https://sidnell.uk/","Headless · CMS","live"),
-  ("04","Pixlwrk","DEVELOPER & SOFTWARE STUDIO","A portfolio for custom websites, software and engineering work.","pixlwrk.jpg",None,"Web engineering · Software","local"),
+  ("04","Pixlwrk","DEVELOPER & SOFTWARE STUDIO","A portfolio for custom websites, software and engineering work.","pixlwrk.jpg","https://pixlwrk.com/","Web engineering · Software","live"),
   ("05","Professional Structures","CONSULTANCY WEBSITE","Business consultancy website with a focus on meaningful enquiries.","pstructures.jpg","https://pstructures.com/","WordPress · Lead generation","live"),
   ("06","Web Designer Direct","LEAD GENERATION PLATFORM","A guided website enquiry and quotation experience.","wdd.jpg","https://webdesignerdirect.com/","Custom workflows · Conversion","live"),
   ("07","DigiPixel","DIGITAL AGENCY WEBSITE","Agency website focused on accessible digital services and project enquiries.","digipixel.jpg","https://digipixel.uk/","Web design · Development","live"),
@@ -45,7 +45,7 @@ work_section='''
  <div class="section-top"><div><span class="kicker">01 / A few things I've built</span><h2>Selected<br>work<span class="headline-period">.</span></h2></div>
  <p>Not just a stack of pretty homepages. These projects involve custom functionality, content architecture, workflows and genuine software engineering.</p></div>
  <div class="work-grid">'''+"".join(cards)+'''</div>
- <p class="work-note">Real screenshots captured from working sites. Lyneham Flying Club and Pixlwrk are labelled as local development builds; live public links are omitted for those two. No invented portfolio screenshots, endorsements or performance results.</p>
+ <p class="work-note">Real screenshots from published projects, with direct links to their public websites. No invented testimonials, screenshots or performance claims.</p>
 </div></section>
 '''
 
