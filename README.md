@@ -108,3 +108,8 @@ The selected Concept 03 is the bold `I MAKE WEBSITES & MORE` design, not the unr
 Staging origin files are copied to `stg-01` (104.238.185.163), `/home/mattsidnell/previews/mattsidnell/`, using Mac Bridge SSH as the authorised `mattsidnell` user. A user-owned static HTTP service on port 8765 returns 200 on that server. However public traffic to port 8765 is blocked and `mattsidnell.preview.digipixel.uk` has no Caddy HTTPS route/certificate yet. Do **not** claim the branded staging URL is live until that reverse-proxy route is provisioned in Ops and verified externally. Account does not have permission for the root-owned Docker socket/Caddy route; `sudo -n` requires interactive authentication. The GitHub Pages preview remains the externally accessible review fallback. Public HTTPS routing on the staging domain is the remaining blocker; source and site files are already staged.
 
 Do not deploy over `mattsidnell.co.uk` without a separate production instruction.
+
+## Approved portrait and DigiPixel signature assets
+
+The approved portrait is in `docs/assets/matt-portfolio.webp` and used in the Concept 03 About section. The cropped email image is in `docs/assets/matt-digipixel-email.jpg`. The proposed DigiPixel signature template is `docs/assets/digipixel-email-signature.html` and uses matt@digipixel.uk. The developer portfolio uses me@mattsidnell.co.uk. DigiPixel's Graph Bridge account has no configured signature, so the HTML is a prototype and no mail has been sent.
+

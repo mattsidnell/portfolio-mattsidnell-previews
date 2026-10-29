@@ -36,6 +36,12 @@
 .about-art>strong span{color:#e86696}
 .about-art-bottom{display:flex;justify-content:space-between;border-top:2px solid var(--black);padding-top:14px}
 .about-art-bottom span{font-size:24px;line-height:.7}
+.about-portrait{display:block;position:relative;overflow:hidden;border:3px solid var(--black);background:#183c47;box-shadow:18px 18px 0 #11283235;margin:0;aspect-ratio:850/980}
+.about-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 24%;filter:saturate(.95)}
+.about-portrait figcaption{position:absolute;bottom:0;left:0;right:0;background:var(--yellow);color:#0c2435;border-top:3px solid var(--black);font:800 11px 'Space Grotesk';letter-spacing:.12em;padding:16px 19px;display:flex;justify-content:space-between;align-items:center}
+.about-portrait figcaption span{font-size:23px;line-height:1}
+body[data-colour=dark] .about-portrait{border-color:#43cfdf;box-shadow:18px 18px 0 #17a9c922}
+@media(max-width:720px){.about-portrait{max-width:500px;aspect-ratio:850/960}}
 body[data-colour=cyan]{--yellow:#44d9ed;--cream:#f1fbff;--pink:#ffe77d;--black:#0c2535}
 body[data-colour=cyan] .hero{background:#43d6e9}
 body[data-colour=cyan] .ticker{color:#9aeeff}
@@ -168,7 +174,7 @@ body[data-colour=dark] .big-disc{background:#edd04c;color:#061923;border-color:#
 <section class="split" id="services"><div class="split-left"><span class="kicker">02 / What you get</span><h2>Good ideas.<br>Solid code.<br>No drama.</h2><p>From the first brief to production. Happy collaborating with an agency team or taking ownership of a defined technical delivery.</p><span class="scribble" aria-hidden="true">*</span></div><div class="split-right"><div class="skill"><em>01</em><div><strong>Websites with personality</strong><small>Custom frontend builds, responsive experiences, CMS work.</small></div></div><div class="skill"><em>02</em><div><strong>WordPress without the limitations</strong><small>Bespoke themes, plugins, member areas and integrations.</small></div></div><div class="skill"><em>03</em><div><strong>Proper applications</strong><small>Laravel, PHP, specialist platforms and headless systems.</small></div></div><div class="skill"><em>04</em><div><strong>The complicated bits</strong><small>APIs, automation, existing systems and technical problem solving.</small></div></div></section>
 
 <section class="about" id="about"><div class="wrap about-grid">
-<div class="about-art" aria-label="Typographic illustration for Matt Sidnell, without a portrait"><span class="about-art-top">A REAL PERSON.<br>REAL PROJECTS.</span><strong>BUILT.<br>BY.<br>MATT<span>.</span></strong><div class="about-art-bottom">INDEPENDENT DEVELOPER <span>↗</span></div></div>
+<figure class="about-portrait"><img src="../assets/matt-portfolio.webp" alt="Approved portrait of Matt Sidnell in a navy hoodie and jeans in a cyan-lit developer workspace" width="850" height="1019" loading="lazy"><figcaption>INDEPENDENT DEVELOPER <span>↗</span></figcaption></figure>
 <div><span class="kicker">03 / The human behind the code</span><h2>Hi, I'm Matt.</h2>
 <p>I'm an independent web developer based in Wiltshire. I enjoy the meeting point between great design and difficult technical challenges.</p>
 <p>Need extra hands for an agency project, a specialist build or a short contract? I can work alongside your existing team without making everything more complicated.</p>

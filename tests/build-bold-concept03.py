@@ -51,7 +51,7 @@ work_section='''
 
 about_section='''
 <section class="about" id="about"><div class="wrap about-grid">
-<div class="about-art" aria-label="Typographic illustration for Matt Sidnell, without a portrait"><span class="about-art-top">A REAL PERSON.<br>REAL PROJECTS.</span><strong>BUILT.<br>BY.<br>MATT<span>.</span></strong><div class="about-art-bottom">INDEPENDENT DEVELOPER <span>↗</span></div></div>
+<figure class="about-portrait"><img src="../assets/matt-portfolio.webp" alt="Approved portrait of Matt Sidnell in a navy hoodie and jeans in a cyan-lit developer workspace" width="850" height="1019" loading="lazy"><figcaption>INDEPENDENT DEVELOPER <span>↗</span></figcaption></figure>
 <div><span class="kicker">03 / The human behind the code</span><h2>Hi, I'm Matt.</h2>
 <p>I'm an independent web developer based in Wiltshire. I enjoy the meeting point between great design and difficult technical challenges.</p>
 <p>Need extra hands for an agency project, a specialist build or a short contract? I can work alongside your existing team without making everything more complicated.</p>
@@ -91,6 +91,12 @@ base_css=r'''
 .about-art>strong span{color:#e86696}
 .about-art-bottom{display:flex;justify-content:space-between;border-top:2px solid var(--black);padding-top:14px}
 .about-art-bottom span{font-size:24px;line-height:.7}
+.about-portrait{display:block;position:relative;overflow:hidden;border:3px solid var(--black);background:#183c47;box-shadow:18px 18px 0 #11283235;margin:0;aspect-ratio:850/980}
+.about-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 24%;filter:saturate(.95)}
+.about-portrait figcaption{position:absolute;bottom:0;left:0;right:0;background:var(--yellow);color:#0c2435;border-top:3px solid var(--black);font:800 11px 'Space Grotesk';letter-spacing:.12em;padding:16px 19px;display:flex;justify-content:space-between;align-items:center}
+.about-portrait figcaption span{font-size:23px;line-height:1}
+body[data-colour=dark] .about-portrait{border-color:#43cfdf;box-shadow:18px 18px 0 #17a9c922}
+@media(max-width:720px){.about-portrait{max-width:500px;aspect-ratio:850/960}}
 body[data-colour=cyan]{--yellow:#44d9ed;--cream:#f1fbff;--pink:#ffe77d;--black:#0c2535}
 body[data-colour=cyan] .hero{background:#43d6e9}
 body[data-colour=cyan] .ticker{color:#9aeeff}
@@ -157,7 +163,7 @@ selector={
   "category":"Personal portfolio website design review",
   "title":"Concept 03. Cyan first, three bold directions.",
   "summary":"The bold 'I MAKE WEBSITES & MORE' portfolio design you picked, available in three colourways. Cyan is the leading option, with original yellow and dark navy for comparison.",
-  "notice":"These are review previews. There is deliberately no portrait: the generated/cutout likenesses were not suitable. The portfolio cards show nine genuine site screenshots, with local-only development work clearly labelled. The production mattsidnell.co.uk website is unchanged.",
+  "notice":"Design previews, not production. The About section uses the newly approved AI-assisted portrait created from Matt’s reference images. The portfolio cards show nine genuine site screenshots with local builds clearly labelled. The production mattsidnell.co.uk website is unchanged.",
   "concepts":[
     {"name":"01 / Electric Cyan","tag":"Preferred direction","description":"Your original bold typography with electric cyan dominant and controlled yellow accents.","image":"../assets/previews/concept03-cyan.jpg","url":"../concept03-cyan/"},
     {"name":"02 / Original Yellow","tag":"Original reference","description":"The black-on-yellow treatment from your screenshot; identical layout, exact original headline and navigation.","image":"../assets/previews/concept03-yellow.jpg","url":"../concept03-yellow/"},
@@ -170,4 +176,4 @@ selector={
 compare=docs/'concept03-compare'
 compare.mkdir(parents=True,exist_ok=True)
 (compare/'selector.json').write_text(json.dumps(selector,indent=2)+'\n')
-print('Rendered screenshot-faithful original and 3 Concept 03 colour variants, with',len(cards),'real project screenshots and no photos.')
+print('Rendered screenshot-faithful original and 3 Concept 03 colour variants, with',len(cards),'real project screenshots and the approved About portrait.')
