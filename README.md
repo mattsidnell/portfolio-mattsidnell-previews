@@ -68,3 +68,29 @@ The user clarified Concept 03 by supplying the dark navy/cyan visual showing a t
 - The top four project images use **real captured website screenshots**: Sidnell (live), Grinders (live), Lyneham Flying Club (local), Pixlwrk (local). Further actual public sites are under More selected work. Do not imply the local builds are public.
 - The hero intentionally uses a **clearly labelled illustration/composite** of Matt's real facial portrait with a CSS hoodie, not a claim that he has been photographed wearing a hoodie. To replace with an authentic hoodie-and-jeans photo, request a genuine casual source photograph and preserve the verified layout.
 - Verify `node tests/verify-concept03.js` on desktop and mobile. All comparisons noindex and staging/review only. Do not change mattsidnell.co.uk without separately requested production deployment.
+
+## AUTHORITATIVE CONCEPT 03 — screenshot confirmed (29 October 2026)
+
+**This replaces all earlier, incorrect references to Concept 03.** The user supplied an actual screenshot identifying Concept 03 as the **BOLD YELLOW** homepage, with `I MAKE / WEBSITES / & MORE`, yellow background, huge black/outlined display lettering, a circular `SEE THE WORK` button, and a black technology ticker. It was initially named `The Studio` in the first group of concepts. It is NOT the separate dark Systems Mind design, nor the later cyan Design Led page.
+
+**URLs**
+- `/concept03/` — canonical original yellow screenshot-matched page. This deliberately opens the page, not a gallery.
+- `/studio/` and `/concept03-yellow/` — the same original yellow design.
+- `/concept03-cyan/` — the same exact layout with cyan as the principal colour.
+- `/concept03-dark/` — the same exact layout with dark navy, cyan and small yellow accents.
+- `/concept03-compare/` — colour comparison gallery using the shared DigiPixel preview selector.
+
+**Implementation**
+- `tests/concept03-bold-reference.html`: canonical unedited original `studio/index.html` captured from the initial design, retaining the precise hero layout.
+- `tests/build-bold-concept03.py`: the only current generator for these Concept 03 pages. Updates project showcases and the About graphic *without modifying the original bold hero layout*.
+- Uses nine real screenshots in `docs/cyan/assets/projects/`; the first four include Grinders, Lyneham Flying Club (clearly local), Sidnell, and Pixlwrk (clearly local).
+- No face compositing, invented hoodie photo, formal suit photograph or other portrait. The screenshot has no hero portrait. The About section uses a bold typographic block, not a picture. This avoids pretending a synthetic casual portrait is a real photo.
+- Verify `node tests/verify-bold-concept03.js`. Tested desktop 1440px, mobile 390px, no overflow, 9 real screenshot images loaded, menu functional, no JS exceptions.
+- Do not alter the production `mattsidnell.co.uk` site until user requests deployment.
+
+**Rebuild**
+```
+python3 tests/build-bold-concept03.py
+python3 ~/Sites/digipixel-preview-selector/render.py --config docs/concept03-compare/selector.json --output docs/concept03-compare/index.html
+node tests/verify-bold-concept03.js
+```

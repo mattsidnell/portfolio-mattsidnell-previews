@@ -1,0 +1,30 @@
+{
+  "project": "Matt Sidnell \u2014 Original Concept 03",
+  "category": "Personal portfolio website design review",
+  "title": "The bold Concept 03 you selected.",
+  "summary": "Exactly the bold typographic design shown in your screenshot: 'I MAKE WEBSITES & MORE', oversized lettering, a circular work CTA and a scrolling technology ticker. Compare the same composition in the original yellow, electric cyan, and dark navy.",
+  "notice": "These are review previews. There is deliberately no portrait: the generated/cutout likenesses were not suitable. The portfolio cards show nine genuine site screenshots, with local-only development work clearly labelled. The production mattsidnell.co.uk website is unchanged.",
+  "concepts": [
+    {
+      "name": "01 / Original Yellow",
+      "tag": "Your chosen design",
+      "description": "The bright yellow and black typography from your actual phone screenshot. Original hero retained.",
+      "image": "../assets/previews/concept03-yellow.jpg",
+      "url": "../concept03-yellow/"
+    },
+    {
+      "name": "02 / Electric Cyan",
+      "tag": "Cyan-led alternative",
+      "description": "Same bold original design, with cyan as the dominant colour and restrained yellow touches.",
+      "image": "../assets/previews/concept03-cyan.jpg",
+      "url": "../concept03-cyan/"
+    },
+    {
+      "name": "03 / Midnight Navy",
+      "tag": "Dark alternative",
+      "description": "Same giant type and content layout on deep navy, accented with bright cyan and yellow.",
+      "image": "../assets/previews/concept03-dark.jpg",
+      "url": "../concept03-dark/"
+    }
+  ]
+}
