@@ -1,0 +1,30 @@
+{
+  "project": "Matt Sidnell \u2014 Concept 03 Colour Studies",
+  "category": "Personal portfolio design review",
+  "title": "Concept 03. Three colour directions.",
+  "summary": "Compare the same real developer portfolio in three colourways: a restrained cyan-led version, a livelier yellow-accented version and a dark technical version. Every preview includes actual project screenshots and real links where available.",
+  "notice": "Design previews only. The person is represented by a small, genuine headshot cropped from an existing formal photograph. A casual hoodie/jeans portrait has not been fabricated: replace the headshot with a newly supplied genuine photo. Project previews are captured from live websites or labelled local development builds.",
+  "concepts": [
+    {
+      "name": "01 / Cyan & Navy",
+      "tag": "Clean & confident",
+      "description": "A white, navy and cyan direction with just a hint of yellow. The most universally professional choice.",
+      "image": "../assets/previews/concept03-cyan.jpg",
+      "url": "../concept03-cyan/"
+    },
+    {
+      "name": "02 / Cyan & Electric Yellow",
+      "tag": "Creative & memorable",
+      "description": "The same serious developer portfolio with more warmth, creative energy and distinctive yellow details.",
+      "image": "../assets/previews/concept03-yellow.jpg",
+      "url": "../concept03-yellow/"
+    },
+    {
+      "name": "03 / Midnight Cyan",
+      "tag": "Technical & bold",
+      "description": "A dark navy systems-first aesthetic, bright cyan UI, technical credibility and a restrained yellow spark.",
+      "image": "../assets/previews/concept03-dark.jpg",
+      "url": "../concept03-dark/"
+    }
+  ]
+}

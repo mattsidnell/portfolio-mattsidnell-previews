@@ -1,0 +1,30 @@
+
+.theme-switcher{background:#092231;color:#d9f4f8;border-bottom:1px solid #1e5266;font:600 10px 'DM Sans',sans-serif;letter-spacing:.075em}
+.theme-switcher-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:40px;padding-top:6px;padding-bottom:6px}
+.theme-switcher nav{display:flex;gap:8px;flex-wrap:wrap}
+.theme-switcher nav a{padding:6px 10px;border:1px solid #325c6f;border-radius:3px}
+.theme-switcher nav a:hover,.theme-switcher nav a[href="../concept03-cyan/"]{background:#16cde3;color:#0c2430;border-color:#16cde3}
+.switcher-separator{color:#f1c83a}.switcher-all{color:#b3e7f1;white-space:nowrap}
+@media(max-width:650px){.theme-switcher-inner{flex-wrap:wrap;padding-top:9px;padding-bottom:9px;gap:6px}.theme-switcher nav{order:3;width:100%;gap:5px}.theme-switcher nav a{padding:5px 6px;font-size:9px}.switcher-all{margin-left:auto;font-size:9px}}
+
+/* Portrait placeholder, not a photograph or an AI-generated likeness. */
+.portrait-head.portrait-pending{width:155px;height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#b8f0f5,#ddf6ff);border:1px solid #a8deeb;overflow:hidden}
+.hoodie-art{position:relative;display:block;width:155px;height:155px}
+.hoodie-head{display:block;position:absolute;top:26px;left:57px;width:43px;height:49px;border-radius:42% 42% 48% 48%;background:#173d50;box-shadow:0 0 0 9px #2a778a}
+.hoodie-body{display:block;position:absolute;top:83px;left:11px;width:134px;height:116px;border-radius:60px 60px 0 0;background:linear-gradient(120deg,#153343,#276b81)}
+.hoodie-body:before{content:'';position:absolute;left:43px;top:-8px;width:49px;height:30px;border-radius:40% 40% 50% 50%;background:#173d50;border:5px solid #2a778a}
+.hoodie-body:after{content:'';position:absolute;left:67px;top:35px;width:2px;height:45px;background:#b4e3e8;box-shadow:10px 0 0 #b4e3e8}
+.about-monogram{display:grid;place-items:center;flex:0 0 84px;width:84px;height:84px;border-radius:50%;background:#c8f6fa;color:#095169;font:800 26px 'Manrope';letter-spacing:-.1em}
+.theme-dark .about-monogram{background:#226275;color:#c7faff}
+@media(max-width:860px){.portrait-head.portrait-pending{width:110px;height:110px}.hoodie-art{transform:scale(.72);transform-origin:top left;flex:0 0 155px;align-self:flex-start}}
+
+
+:root{--cyan:#08b6d3;--cyan2:#079bb8;--soft:#e8faff}
+.hero{background:linear-gradient(125deg,#fff 0%,#fff 45%,#edfaff 100%)}
+.hero h1{position:relative}
+.hero h1:after{content:"";display:block;background:#f5c53b;width:38px;height:5px;border-radius:9px;position:absolute;bottom:-13px;left:0}
+.portrait-card{transform:rotate(-2deg);border-color:#c6ecf3}
+.code-card{box-shadow:13px 20px 50px #005c7826}
+.eyebrow .cyan-dot{background:#e7bf26}
+.project:hover{border-color:#70cbe0}
+.work-filter button[aria-pressed=true]{background:#102938;border-color:#102938}
