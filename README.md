@@ -113,3 +113,15 @@ Do not deploy over `mattsidnell.co.uk` without a separate production instruction
 
 The approved portrait is in `docs/assets/matt-portfolio.webp` and used in the Concept 03 About section. The cropped email image is in `docs/assets/matt-digipixel-email.jpg`. The proposed DigiPixel signature template is `docs/assets/digipixel-email-signature.html` and uses matt@digipixel.uk. The developer portfolio uses me@mattsidnell.co.uk. DigiPixel's Graph Bridge account has no configured signature, so the HTML is a prototype and no mail has been sent.
 
+
+## Final user-selected portraits — 29 October 2026
+
+The user has explicitly selected and uploaded TWO existing photos to use, with **no further AI generation or changes to face/hair/skin**:
+
+- `docs/assets/portrait/matt-seated.webp` is a size-optimised copy of the supplied seated developer-office portrait; this is shown in the About section of the bold electric-cyan personal portfolio `/concept03/` and its other colourways. No synthetic face overlays or edits.
+- `docs/assets/portrait/matt-digipixel-400.jpg` is a size-optimised copy of the user's exact approved blue-background headshot, used for the DigiPixel email signature preview (`docs/digipixel-email-signature/`).
+- Source upload data and the web versions were verified against their SHA-256 digests after private OneDrive sync transfer. Never overwrite these final images by regenerating likenesses.
+- `docs/digipixel-email-signature/signature.html` is an email-friendly table using the externally hosted portrait asset and `matt@digipixel.uk`. **Preview only:** the DigiPixel Graph Bridge reports `signatureConfigured=false`; no mailbox settings were changed and no messages were sent.
+- Visual QA: `node tests/verify-approved-photos.cjs` checked 1440px desktop and 390px mobile, images loaded, correct email links, no horizontal overflow, and no page JS errors.
+
+The original user-supplied images are available in the conversation and private OneDrive transport copies; only sized web assets (not the large source originals) are checked into the publicly accessible portfolio preview repository.

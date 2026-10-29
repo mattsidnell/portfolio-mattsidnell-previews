@@ -49,15 +49,15 @@ work_section='''
 </div></section>
 '''
 
-about_section='''
+about_section='''''
 <section class="about" id="about"><div class="wrap about-grid">
-<figure class="about-portrait"><img src="../assets/matt-portfolio.webp" alt="Approved portrait of Matt Sidnell in a navy hoodie and jeans in a cyan-lit developer workspace" width="850" height="1019" loading="lazy"><figcaption>INDEPENDENT DEVELOPER <span>↗</span></figcaption></figure>
+<figure class="about-photo"><img src="../assets/portrait/matt-seated.webp" width="1000" height="1199" loading="lazy" alt="Matt Sidnell seated in his office wearing a navy hoodie and jeans"></figure>
 <div><span class="kicker">03 / The human behind the code</span><h2>Hi, I'm Matt.</h2>
 <p>I'm an independent web developer based in Wiltshire. I enjoy the meeting point between great design and difficult technical challenges.</p>
 <p>Need extra hands for an agency project, a specialist build or a short contract? I can work alongside your existing team without making everything more complicated.</p>
-<a class="small-btn" href="mailto:matt@sidnell.uk?subject=Agency%20contract%20opportunity">Let's talk about it ↗</a>
+<a class="small-btn" href="mailto:me@mattsidnell.co.uk?subject=Agency%20contract%20opportunity">Let's talk about it ↗</a>
 </div></div></section>
-'''
+'''''
 
 work_re=r'<section class="work" id="work">.*?</section>'
 about_re=r'<section class="about" id="about">.*?</section>'
@@ -143,7 +143,15 @@ body[data-colour=dark] .big-disc{background:#edd04c;color:#061923;border-color:#
 @media(max-width:960px){.work-grid{gap:18px}.project-screenshot{height:260px}.work-card-content{padding:21px}.about-art{min-height:400px}}
 @media(max-width:720px){.work-grid{grid-template-columns:1fr}.project-screenshot{height:240px}.work-card h3{font-size:clamp(25px,7vw,37px)}.about-art{min-height:320px;max-width:500px}.about-art>strong{font-size:clamp(60px,16vw,110px)}.about-grid{gap:46px}body[data-colour=dark] .top-right{background:#072a3b}body[data-colour=dark] .top-right a{color:#e8faff}}
 '''
-html=html.replace('</style>',base_css+'</style>',1)
+photo_css=r'''
+.about-photo{margin:0;min-height:475px;overflow:hidden;border:3px solid var(--black);box-shadow:18px 18px 0 #1d1f1836;background:#c4eaf1}
+.about-photo img{width:100%;height:475px;object-fit:cover;object-position:center 31%;display:block}
+body[data-colour=cyan] .about-photo{border-color:#08293a;box-shadow:18px 18px 0 #08465825}
+body[data-colour=dark] .about-photo{border-color:#52d5ea;box-shadow:18px 18px 0 #1abbd522}
+@media(max-width:960px){.about-photo,.about-photo img{min-height:0;height:410px}}
+@media(max-width:720px){.about-photo{max-width:500px}.about-photo,.about-photo img{height:385px}}
+'''
+html=html.replace('</style>',base_css+photo_css+'</style>',1)
 html=html.replace('Creative developer / Design concept 02','Personal developer portfolio / Concept 03')
 html=html.replace('matt@sidnell.uk','me@mattsidnell.co.uk')
 # The user's screenshot is the selected hero. DO NOT alter that hero's typography or layout.
