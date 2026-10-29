@@ -1,0 +1,32 @@
+# Pixlwrk Ops / Stg-01: dedicated Matt Sidnell static preview
+# Deploy only after verifying STAGING_INGRESS_NETWORK from existing Caddy service.
+name: mattsidnell-portfolio-preview
+
+services:
+  website:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    expose:
+      - "80"
+    volumes:
+      - ${PORTFOLIO_CONTENT_DIR:?Set verified absolute deployed site path}:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - ingress
+    labels:
+      caddy: "mattsidnell.preview.digipixel.uk"
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.header.X-Robots-Tag: '"noindex, nofollow, noarchive"'
+      pixlwrk.project: "mattsidnell-portfolio"
+      pixlwrk.environment: "preview"
+      pixlwrk.preview.role: "personal-portfolio"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/_health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  ingress:
+    external: true
+    name: ${STAGING_INGRESS_NETWORK:?Set to existing verified Caddy ingress network}
