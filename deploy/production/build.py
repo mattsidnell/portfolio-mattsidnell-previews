@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -48,7 +49,53 @@ def main() -> None:
         'custom WordPress, Laravel and complex software systems."></head>',
         1,
     )
+    # Replace every mailto CTA with a single accessible in-page enquiry dialog.
+    # No messages are sent unless the validated backend confirms persistence.
+    def form_trigger(match: re.Match[str]) -> str:
+        before, subject, after = match.groups()
+        topic = (
+            'Contract opportunity' if 'contract' in subject.lower()
+            else 'Agency overflow' if 'agency' in subject.lower()
+            else 'Website project'
+        )
+        return '<a' + before + 'href="#contact-dialog" data-contact-open data-contact-topic="' + topic + '"' + after + '>'
+
+    html, count = re.subn(
+        r'<a([^>]*?)href="mailto:me@mattsidnell\.co\.uk\?subject=([^"]+)"([^>]*)>',
+        form_trigger, html,
+    )
+    if count != 4:
+        raise ValueError(f"Expected four outgoing contact links; found {count}")
+    html = html.replace('aria-label="Email Matt about a project"', 'aria-label="Open project enquiry form"')
+    html = html.replace('Personal developer portfolio / Concept 03', 'Freelance web developer & software engineer')
+    html = html.replace('Development contracts & agency overflow</span>', 'Development contracts & agency overflow · <a href="/privacy.html">Privacy notice</a></span>')
+    html = html.replace('>me@mattsidnell.co.uk</a>', '>Send an enquiry</a>')
+    if 'Concept 03</span>' in html or 'preview</span>' in html.lower():
+        raise ValueError('Preview terminology remains on production homepage')
+    html = html.replace('</head>', '<link rel="stylesheet" href="/contact.css"></head>', 1)
+    html = html.replace('</body>', (ROOT / 'deploy/production/contact.html').read_text() + '<script src="/contact.js" defer></script></body>', 1)
     (OUT / "index.html").write_text(html)
+    for asset in ('contact.css', 'contact.js'):
+        shutil.copy2(ROOT / 'deploy/production' / asset, OUT / asset)
+    (OUT / 'privacy.html').write_text(
+        '<!doctype html><html lang="en-GB"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<title>Privacy notice | Matt Sidnell</title>'
+        '<style>body{font:16px/1.6 system-ui;margin:0;padding:6vw;background:#f2fbff;color:#102f40}'
+        'main{max-width:760px;margin:auto}a{color:#087993}</style></head><body><main>'
+        '<p><a href="/">Back to portfolio</a></p><h1>Privacy notice</h1>'
+        '<p>I am Matt Sidnell, an independent web developer. When you use the portfolio enquiry form, '
+        'I collect the name, email address, optional company and project details you submit. '
+        'I use these only to review and respond to your enquiry, under my legitimate business interests.</p>'
+        '<p>Form submissions are stored securely on the website server and normally deleted after up to '
+        '180 days. They are not sold or used for marketing lists. Access is restricted to the site operator. '
+        'Hosting and infrastructure providers may process this information as service providers.</p>'
+        '<p>You may ask to access, correct or erase your details by emailing '
+        '<a href="mailto:me@mattsidnell.co.uk">me@mattsidnell.co.uk</a>. '
+        'You can also complain to the UK Information Commissioner at '
+        '<a href="https://ico.org.uk/">ico.org.uk</a>.</p></main></body></html>'
+    )
+
 
     assets = list((DOCS / "cyan" / "assets" / "projects").glob("*"))
     if len(assets) != 9:

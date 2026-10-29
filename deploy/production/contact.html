@@ -1,0 +1,40 @@
+<dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title" aria-describedby="contact-description">
+  <div class="contact-modal-card">
+    <button type="button" class="contact-close" id="contact-close" aria-label="Close contact form">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+    <p class="contact-modal-kicker">Let's work together / Get in touch</p>
+    <h2 id="contact-title">Have a project?</h2>
+    <p class="contact-modal-copy" id="contact-description">Need an experienced developer for a contract, an agency project or a custom system? Send the details here and I'll respond directly.</p>
+    <form class="contact-form" id="portfolio-contact-form" method="post" action="/api/contact">
+      <div class="two-fields">
+        <label>Your name <input name="name" type="text" autocomplete="name" maxlength="120" required placeholder="Your name"></label>
+        <label>Email address <input name="email" type="email" autocomplete="email" maxlength="254" required placeholder="you@company.co.uk"></label>
+      </div>
+      <div class="two-fields">
+        <label>Company <em>Optional</em><input name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Company or agency"></label>
+        <label>What's the enquiry about?
+          <select name="enquiry_type" required>
+            <option value="Contract opportunity">Contract opportunity</option>
+            <option value="Agency overflow">Agency overflow</option>
+            <option value="Website project">Website project</option>
+            <option value="Custom software">Custom software</option>
+            <option value="General enquiry">General enquiry</option>
+          </select>
+        </label>
+      </div>
+      <label>Tell me a little about the project
+        <textarea name="message" maxlength="5000" minlength="10" required placeholder="What do you need, when are you looking to start, and how can I help?"></textarea>
+      </label>
+      <label class="contact-honeypot" aria-hidden="true">Company website
+        <input type="text" name="company_url" tabindex="-1" autocomplete="off">
+      </label>
+      <p class="contact-privacy">Your details are used only to respond to your enquiry. Please don't include sensitive personal information. <a href="/privacy.html" target="_blank" rel="noopener">Privacy notice</a></p>
+      <button class="contact-submit" type="submit">
+        <span>Send enquiry</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg>
+      </button>
+      <p class="contact-status" role="status" aria-live="polite" id="contact-status"></p>
+    </form>
+  </div>
+</dialog>
