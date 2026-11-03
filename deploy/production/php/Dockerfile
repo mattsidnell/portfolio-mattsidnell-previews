@@ -17,7 +17,8 @@ RUN apk add --no-cache sqlite-dev \
        'clear_env = no' \
        'catch_workers_output = yes' \
        > /usr/local/etc/php-fpm.d/zz-portfolio.conf \
-    && rm -f /usr/local/etc/php-fpm.d/www.conf
+    && rm -f /usr/local/etc/php-fpm.d/www.conf \
+    && printf '%s\n' 'expose_php=Off' > /usr/local/etc/php/conf.d/zz-portfolio.ini
 COPY --chown=10001:10001 index.php /app/index.php
 USER 10001:10001
 WORKDIR /app

@@ -74,7 +74,7 @@ function postBody(int $limit, array $fields): array {
     if (!in_array($_SERVER['HTTP_ORIGIN'] ?? '', ORIGINS, true)) {
         respond(403, ['error' => 'origin_not_allowed']);
     }
-    if (isset($_SERVER['HTTP_SEC_FETCH_SITE']) && $_SERVER['HTTP_SEC_FETCH_SITE'] !== 'same-origin') {
+    if (!empty($_SERVER['HTTP_SEC_FETCH_SITE']) && $_SERVER['HTTP_SEC_FETCH_SITE'] !== 'same-origin') {
         respond(403, ['error' => 'cross_site']);
     }
     if (strtolower(trim(explode(';', $_SERVER['CONTENT_TYPE'] ?? '')[0])) !== 'application/json') {
