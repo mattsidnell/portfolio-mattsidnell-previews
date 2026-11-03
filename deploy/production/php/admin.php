@@ -8,6 +8,11 @@
 declare(strict_types=1);
 
 const ADMIN_SECRET_PATH = '/data/portfolio-admin-password.hash';
+
+function adminSecretPath(): string {
+    return getenv('PORTFOLIO_ADMIN_PASSWORD_FILE') ?: ADMIN_SECRET_PATH;
+}
+
 const ADMIN_IDLE_SECONDS = 1800;
 const ADMIN_ABSOLUTE_SECONDS = 28800;
 const ADMIN_MAX_FAILURES = 5;
@@ -18,8 +23,8 @@ function adminEscape(mixed $value): string {
 }
 
 function adminSecret(): ?string {
-    if (!is_file(ADMIN_SECRET_PATH) || !is_readable(ADMIN_SECRET_PATH)) return null;
-    $hash = trim((string)file_get_contents(ADMIN_SECRET_PATH));
+    if (!is_file(adminSecretPath()) || !is_readable(adminSecretPath())) return null;
+    $hash = trim((string)file_get_contents(adminSecretPath()));
     return str_starts_with($hash, '$2y$') || str_starts_with($hash, '$argon2')
         ? $hash : null;
 }
@@ -27,18 +32,18 @@ function adminSecret(): ?string {
 function adminProvisionCli(array $args): never {
     if (PHP_SAPI !== 'cli' || !in_array($args[1] ?? '', ['provision', 'rotate'], true)) exit(2);
     $mode = $args[1];
-    if ($mode === 'provision' && file_exists(ADMIN_SECRET_PATH)) {
+    if ($mode === 'provision' && file_exists(adminSecretPath())) {
         fwrite(STDERR, "Admin password already provisioned. Nothing changed.\n");
         exit(3);
     }
-    if ($mode === 'rotate' && !file_exists(ADMIN_SECRET_PATH)) {
+    if ($mode === 'rotate' && !file_exists(adminSecretPath())) {
         fwrite(STDERR, "No admin password exists. Use provision.\n");
         exit(3);
     }
     $password = bin2hex(random_bytes(24)); // 192 random bits
     $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
     if ($hash === false) throw new RuntimeException('Password hashing failed');
-    $dir = dirname(ADMIN_SECRET_PATH);
+    $dir = dirname(adminSecretPath());
     if (!is_dir($dir) || !is_writable($dir)) {
         fwrite(STDERR, "Private data directory is unavailable.\n");
         exit(3);
@@ -50,8 +55,8 @@ function adminProvisionCli(array $args): never {
     fwrite($handle, $hash . "\n");
     fflush($handle);
     fclose($handle);
-    rename($temporary, ADMIN_SECRET_PATH);
-    chmod(ADMIN_SECRET_PATH, 0600);
+    rename($temporary, adminSecretPath());
+    chmod(adminSecretPath(), 0600);
     echo "New private dashboard password (shown only once):\n" . $password . "\n";
     echo "Save it in your password manager. It cannot be recovered from the hash.\n";
     exit;
