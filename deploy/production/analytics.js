@@ -30,7 +30,8 @@
   })();
   const track = (kind, target) => {
     window.portfolioGA4?.track(kind, target);
-    if (optedOut()) return;
+    // No requests to the private aggregate endpoint until the PHP release is live.
+    if (window.PORTFOLIO_FIRST_PARTY_ANALYTICS_ENABLED !== true || optedOut()) return;
     try {
       fetch('/api/analytics', {
         method: 'POST', mode: 'same-origin', credentials: 'omit', keepalive: true,

@@ -71,3 +71,7 @@ GA4: optional opt-in integration is implemented in ga4.js and ga4-config.js.
 A real portfolio-specific Google Analytics G- measurement ID must be inserted
 in ga4-config.js. Until then NO Google script loads. Once configured, visitors
 are asked to opt in and can withdraw consent in /privacy.html.
+
+First-party aggregate requests remain DISABLED in the live static client until the
+PHP /api/analytics endpoint passes production smoke tests. GA4 page views and
+consented conversion events function independently.
