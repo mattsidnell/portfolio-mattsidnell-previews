@@ -20,6 +20,7 @@ RUN apk add --no-cache sqlite-dev \
     && rm -f /usr/local/etc/php-fpm.d/www.conf \
     && printf '%s\n' 'expose_php=Off' > /usr/local/etc/php/conf.d/zz-portfolio.ini
 COPY --chown=10001:10001 index.php /app/index.php
+COPY --chown=10001:10001 admin.php /app/admin.php
 USER 10001:10001
 WORKDIR /app
 EXPOSE 9000
