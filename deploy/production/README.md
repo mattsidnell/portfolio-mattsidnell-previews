@@ -36,3 +36,54 @@ The production footer now reads **Freelance web developer & software engineer** 
 - Review enquiries on an authorised host session: `sudo docker exec mattsidnell-contact-api python /app/app.py list`. To display one complete message, run `sudo docker exec mattsidnell-contact-api python /app/app.py show UUID`. Do not expose these outputs publicly or paste actual personal data into source control.
 - QA: a synthetic form was accepted through the live public website and confirmed in SQLite, then the exact test record was deleted. Invalid-origin submissions returned HTTP 403. Desktop and mobile modal opening, focus, success feedback, Escape/close, no overflow and footer copy were checked in Chromium.
 - **Remaining delivery dependency:** no outgoing SMTP/Graph notification transport is configured for this endpoint. A successful confirmation means the enquiry was **saved**, NOT emailed. The shared DigiPixel Forms API at `forms.digipixel.uk` was unavailable (network timeout) when this was deployed, so it was not used. A properly authenticated notification transport and off-machine backup policy for this new database must be set up and verified before considering the contact system fully operational for unattended lead handling. Do not claim alerts or offsite protection for this new DB until proven.
+
+## PHP backend and privacy-safe analytics — production cutover, 3 November 2026
+
+**Live production routing:** Public POST /api/contact and POST /api/analytics
+now use PHP 8.4 through the existing read-only Nginx frontend and internal
+FastCGI service mattsidnell-php-prod:9000. No backend ports are published.
+The PHP container runs as UID 10001 with a read-only root filesystem,
+dropped Linux capabilities, no-new-privileges and the same private SQLite
+directory mounted at /data. The production Docker image is
+mattsidnell-portfolio-php:20261103-v2.
+
+**Preserved functionality:** Same private enquiries.sqlite data and
+CONTACT_RATE_SALT, exact-site origin checking, idempotency, honeypot,
+validation and per-sender/global submission limits. The PHP CLI provides
+private list, show UUID, stats 30 and cleanup modes. The new analytics_daily
+table stores aggregate counts without individual visitor records.
+
+**Verified before switching:** A consistent SQLite backup passed
+PRAGMA integrity_check, and a further private copy was verified off-server.
+The production-built image and isolated PHP/Nginx canary passed HTTP 202
+contact persistence against a COPY of the database, HTTP 204 analytics and
+private CLI readback. Nginx configuration was validated before live reload.
+
+**Verified after switching:** Live HTTPS accepted a synthetic 202 form test
+and saved it in the existing private SQLite volume. Invalid payloads returned
+422 and the aggregate endpoint returned 204. In a fresh browser session,
+the first-party page-view was accepted, Google made zero pre-consent
+requests and the configured stream G-ZWHQDWXCC7 sent requests after consent.
+The public portfolio frontend and static assets remain available.
+
+**Rollback preserved:** The old Python API container mattsidnell-contact-api
+remains running without serving active contact traffic. The previous Nginx
+configuration is backed up at
+/home/auto-ops/sites/mattsidnell-production/config/nginx.before-php-20261103.conf.
+The old static site is backed up separately. Do not remove the Python
+fallback until the independent PHP retention schedule and recovery
+acceptance are complete.
+
+**Outstanding:** Running the PHP CLI retention cleanup was blocked by
+safety controls, so the standalone daily PHP retention schedule was NOT
+activated. The old Python service's existing retention worker remains a
+temporary fallback. One deliberately synthetic test enquiry remains in
+the private SQLite database, identifier php-cutover-smoke-20261103-001;
+an exact removal attempt was also blocked by safety controls. This is
+NOT a real lead. Remove it only through an approved administrative route.
+Automatic email notifications for contact forms and ongoing scheduled
+offsite database backups are still unverified.
+
+GA4 is separately consent controlled and can be disabled through the
+updated privacy notice. First-party aggregate tracking is enabled without
+cookies; no Google services load before GA4 consent is granted.

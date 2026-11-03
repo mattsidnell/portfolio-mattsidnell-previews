@@ -72,28 +72,53 @@ def main() -> None:
     html = html.replace('>me@mattsidnell.co.uk</a>', '>Send an enquiry</a>')
     if 'Concept 03</span>' in html or 'preview</span>' in html.lower():
         raise ValueError('Preview terminology remains on production homepage')
-    html = html.replace('</head>', '<link rel="stylesheet" href="/contact.css"></head>', 1)
-    html = html.replace('</body>', (ROOT / 'deploy/production/contact.html').read_text() + '<script src="/contact.js" defer></script></body>', 1)
+    html = html.replace('</head>', '<link rel="stylesheet" href="/contact.css"><link rel="stylesheet" href="/ga4.css"></head>', 1)
+    html = html.replace('</body>', (ROOT / 'deploy/production/contact.html').read_text()
+        + '<script src="/ga4-config.js" defer></script>'
+        + '<script src="/ga4.js" defer></script>'
+        + '<script src="/contact.js" defer></script>'
+        + '<script src="/analytics.js" defer></script></body>', 1)
     (OUT / "index.html").write_text(html)
-    for asset in ('contact.css', 'contact.js'):
+    for asset in ('contact.css', 'contact.js', 'analytics.js', 'ga4-config.js', 'ga4.js', 'ga4.css'):
         shutil.copy2(ROOT / 'deploy/production' / asset, OUT / asset)
     (OUT / 'privacy.html').write_text(
         '<!doctype html><html lang="en-GB"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<title>Privacy notice | Matt Sidnell</title>'
+        '<link rel="stylesheet" href="/ga4.css">'
         '<style>body{font:16px/1.6 system-ui;margin:0;padding:6vw;background:#f2fbff;color:#102f40}'
-        'main{max-width:760px;margin:auto}a{color:#087993}</style></head><body><main>'
+        'main{max-width:760px;margin:auto}a{color:#087993}'
+        'button{font:inherit;cursor:pointer;padding:9px 14px;border:1px solid #087993;border-radius:5px;}'
+        '</style></head><body><main>'
         '<p><a href="/">Back to portfolio</a></p><h1>Privacy notice</h1>'
         '<p>I am Matt Sidnell, an independent web developer. When you use the portfolio enquiry form, '
         'I collect the name, email address, optional company and project details you submit. '
         'I use these only to review and respond to your enquiry, under my legitimate business interests.</p>'
+        '<h2>Anonymous website statistics</h2>'
+        '<p>This site uses first-party aggregate statistics to count daily page views, clicks on '
+        'portfolio project links, form openings and successful enquiry submissions. '
+        'Reports contain aggregate '
+        'counts and a broad referral category (direct, search, social or other). No tracking cookies, '
+        'device fingerprints, visitor identifiers, raw IP addresses, form details or full referring URLs '
+        'will be saved in these statistics. Counts will be retained for at most 365 days and used only to improve '
+        'the website. You can object at any time: <button type="button" id="analytics-preference">'
+        'Disable anonymous site statistics</button>.</p>'
+        '<h2>Optional Google Analytics 4</h2>'
+        '<p>If you consent, Google Analytics may set analytics cookies and process site usage '
+        'information to help me understand visits, traffic sources and enquiries. '
+        'Google Analytics is off until you explicitly opt in. You can withdraw consent '
+        'at any time using the button below. No advertising personalisation is enabled.</p>'
         '<p>Form submissions are stored securely on the website server and normally deleted after up to '
         '180 days. They are not sold or used for marketing lists. Access is restricted to the site operator. '
         'Hosting and infrastructure providers may process this information as service providers.</p>'
         '<p>You may ask to access, correct or erase your details by emailing '
         '<a href="mailto:me@mattsidnell.co.uk">me@mattsidnell.co.uk</a>. '
         'You can also complain to the UK Information Commissioner at '
-        '<a href="https://ico.org.uk/">ico.org.uk</a>.</p></main></body></html>'
+        '<a href="https://ico.org.uk/">ico.org.uk</a>.</p>'
+        '<p><button type="button" id="ga4-preference">Allow Google Analytics</button></p>'
+        '<script src="/ga4-config.js" defer></script>'
+        '<script src="/ga4.js" defer></script>'
+        '<script src="/analytics.js" defer></script></main></body></html>'
     )
 
 

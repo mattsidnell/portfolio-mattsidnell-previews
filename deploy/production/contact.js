@@ -70,6 +70,7 @@
       if (!body || body.accepted !== true) throw new Error('Unexpected response');
       status.dataset.state = 'success';
       status.textContent = 'Thanks, your enquiry has been received. I’ll be in touch.';
+      window.portfolioAnalytics?.track('enquiry_saved', 'form');
       form.reset();
     } catch (_) {
       status.dataset.state = 'error';
