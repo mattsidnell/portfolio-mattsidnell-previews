@@ -1,0 +1,6 @@
+#ga4-consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:100000;max-width:560px;background:#0b2636;color:#f1fcff;border:2px solid #44d9ed;box-shadow:0 12px 36px #0005;border-radius:8px;padding:15px 18px;font:15px/1.45 system-ui,sans-serif}
+#ga4-consent[hidden]{display:none}#ga4-consent p{margin:0 0 10px}
+#ga4-consent a{color:#6fe6f4;text-decoration:underline}
+#ga4-consent div{display:flex;gap:10px;flex-wrap:wrap}
+#ga4-consent button{font:600 14px system-ui;padding:9px 16px;border-radius:5px;cursor:pointer;border:1px solid #85dceb;background:#e8faff;color:#092638}
+#ga4-consent button[data-ga4-reject]{background:#143647;color:white}

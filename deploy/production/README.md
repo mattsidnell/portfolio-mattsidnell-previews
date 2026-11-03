@@ -36,3 +36,38 @@ The production footer now reads **Freelance web developer & software engineer** 
 - Review enquiries on an authorised host session: `sudo docker exec mattsidnell-contact-api python /app/app.py list`. To display one complete message, run `sudo docker exec mattsidnell-contact-api python /app/app.py show UUID`. Do not expose these outputs publicly or paste actual personal data into source control.
 - QA: a synthetic form was accepted through the live public website and confirmed in SQLite, then the exact test record was deleted. Invalid-origin submissions returned HTTP 403. Desktop and mobile modal opening, focus, success feedback, Escape/close, no overflow and footer copy were checked in Chromium.
 - **Remaining delivery dependency:** no outgoing SMTP/Graph notification transport is configured for this endpoint. A successful confirmation means the enquiry was **saved**, NOT emailed. The shared DigiPixel Forms API at `forms.digipixel.uk` was unavailable (network timeout) when this was deployed, so it was not used. A properly authenticated notification transport and off-machine backup policy for this new database must be set up and verified before considering the contact system fully operational for unattended lead handling. Do not claim alerts or offsite protection for this new DB until proven.
+
+## PHP backend and privacy-safe analytics (3 November 2026)
+
+SOURCE READY, NOT YET A PRODUCTION CUTOVER. Existing production Python contact API must
+stay active until a verified release and rollback.
+
+New PHP implementation: deploy/production/php/index.php and its PHP-FPM Dockerfile.
+New production Nginx candidate: deploy/production/nginx.conf.
+Previous Python reverse-proxy config: deploy/production/nginx.python.conf.
+
+The replacement preserves POST /api/contact JSON, Origin checks, idempotency,
+responses, original SQLite enquiries table, per-sender and overall rate limits.
+Adds POST /api/analytics for anonymous daily counts (no IP or visitor identifiers).
+The private CLI supports: list, show UUID, stats 30, cleanup.
+
+Production release checklist:
+1. Make and verify a CONSISTENT offsite backup of the production SQLite database,
+   including pending write-ahead log (WAL) transactions.
+2. Build and pin a linux/amd64 php:8.4-fpm-alpine image with pdo_sqlite; verify
+   restricted UID 10001, read-only root filesystem and private database mount.
+3. Test against a COPY of the database in a separate internal container. Verify
+   PHP HTTP status codes, real form submissions, retention, rollback and stats.
+4. Preserve the same /data/enquiries.sqlite volume and CONTACT_RATE_SALT.
+5. Cut over the PHP service to internal FastCGI port 9000 and Nginx atomically.
+   Run nginx config validation; roll back both parts if checks do not pass.
+6. Schedule PHP CLI cleanup daily and verify 180-day enquiry and 365-day
+   aggregate statistics retention independently.
+7. Confirm storage, form results, mobile operation, private reporting, backup,
+   no public database route and email notification status. Do not mistake a
+   saved enquiry for one automatically emailed.
+
+GA4: optional opt-in integration is implemented in ga4.js and ga4-config.js.
+A real portfolio-specific Google Analytics G- measurement ID must be inserted
+in ga4-config.js. Until then NO Google script loads. Once configured, visitors
+are asked to opt in and can withdraw consent in /privacy.html.
