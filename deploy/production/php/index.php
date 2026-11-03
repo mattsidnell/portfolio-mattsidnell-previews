@@ -236,6 +236,10 @@ function cliMode(array $args): never {
 if (PHP_SAPI === 'cli') cliMode($argv);
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 if ($path === '/healthz' && ($_SERVER['REQUEST_METHOD'] ?? '') === 'GET') respond(200, ['ok' => true]);
+if ($path === '/admin' || $path === '/admin/' || str_starts_with((string)$path, '/admin/')) {
+    require_once __DIR__ . '/admin.php';
+    handleAdmin();
+}
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') respond(404, ['error' => 'not_found']);
 if ($path === '/api/contact') handleContact();
 if ($path === '/api/analytics') handleAnalytics();
